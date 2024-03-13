@@ -9,20 +9,23 @@ public class Cliente{
         private LocalDate dataNascimento;
         private String nmrTeleC;
         private String moradaC;
+        private char generoC;
         private String codC;
         private int pontosC;
         private ArrayList listaPremios;
         private static int contador = 1; // contador para os codigos
         private static Set<String> codigosUtilizados = new HashSet<>();// guardas os codigo que ja foram utilizados
 
-        public Cliente(String nomeC, String passC, String emailC, LocalDate dataNascimento, String
-                nmrTeleC, String moradaC) {
+
+    public Cliente(String nomeC, String passC, String emailC, LocalDate dataNascimento, String
+                nmrTeleC, String moradaC, char generoC, String codC) {
             this.nomeC = nomeC;
-            this.setPassC(passC);
+            this.passC=passC;
             this.emailC = emailC;
             this.dataNascimento = dataNascimento;
-            this.setNmrTeleC(nmrTeleC);
+            this.nmrTeleC=nmrTeleC;
             this.moradaC = moradaC;
+            this.setGeneroC(generoC);
             this.pontosC=0;
             this.codC= gerarCodigoUnico();
             this.listaPremios=new ArrayList<>();
@@ -41,13 +44,7 @@ public class Cliente{
         }
 
         public void setPassC(String passC) {
-
-            if (passC.matches("^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])(?=.*\\d).{8,}$")) {
                 this.passC = passC;
-            } else {
-                System.out.println("Erro: A senha deve ter pelo menos 8 caracteres, conter pelo menos uma letra maiúscula e um caractere especial.");
-            }
-
         }
 
         public String getEmailC() {
@@ -62,20 +59,16 @@ public class Cliente{
             return dataNascimento;
         }
 
-        public void setDataNascimento(LocalDate dataNascimento) {
-            this.dataNascimento = dataNascimento;
-        }
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento=dataNascimento;
+    }
 
         public String getNmrTeleC() {
             return nmrTeleC;
         }
 
         public void setNmrTeleC(String nmrTeleC) {
-           if(nmrTeleC.length() == 9){
-               this.nmrTeleC = nmrTeleC;
-           }else{
-               System.out.println("Erro");
-           }
+          this.nmrTeleC=nmrTeleC;
         }
         public String getMoradaC() {
             return moradaC;
@@ -97,8 +90,16 @@ public class Cliente{
             return codC;
         }
 
+    public char getGeneroC() {
+        return generoC;
+    }
 
-        public static String gerarCodigoUnico() { //cria codigo a medida que os clientes se registram
+    public void setGeneroC(char generoC) {
+       this.generoC=generoC;
+    }
+
+
+    public static String gerarCodigoUnico() { //cria codigo a medida que os clientes se registram
             String codigo;                        // e o hashset verifica se eles não são repetidos se neste caso forem cria outro
             do {
                 codigo = "C" + contador++;
@@ -106,4 +107,7 @@ public class Cliente{
             codigosUtilizados.add(codigo);
             return codigo;
         }
-    }
+
+
+}
+
