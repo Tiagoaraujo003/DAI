@@ -1,17 +1,23 @@
-package com.example.dai;
+package com.example.demo.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name= "PARCEIRO")
 public class Parceiro {
-    private String nomeParceiro;
-
-    public Parceiro(String nomeParceiro){
-        this.nomeParceiro=nomeParceiro;
-    }
-
-    public String getNomeParceiro() {
-        return nomeParceiro;
-    }
-
-    public void setNomeParceiro(String nomeParceiro) {
-        this.nomeParceiro = nomeParceiro;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Id;
+    @Column(name = "nome" , nullable = false)
+    private String Nome;
+    @Column(name = "pin" , nullable = false)
+    private int pin;
 }

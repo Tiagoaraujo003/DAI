@@ -1,18 +1,23 @@
-    package com.example.dai;
+package com.example.demo.model;
 
-    public class Admin {
-        private String codAdmin;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-        public Admin(String codAdmin){
-            this.codAdmin=codAdmin;
-        }
-
-        public String getCodAdmin() {
-            return codAdmin;
-        }
-
-        public void setCodAdmin(String codAdmin) {
-            this.codAdmin = codAdmin;
-        }
-    }
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name= "ADMIN")
+public class Admin {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(name = "password" , nullable = false)
+    private int Pin;
+    @Column(name = "email" , nullable = false)
+    private String email;
+}

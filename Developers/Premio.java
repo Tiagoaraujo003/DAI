@@ -1,36 +1,25 @@
-package com.example.dai;
+package com.example.demo.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name= "Premio")
 public class Premio {
-    private int pontosP;
-    private String nomeP;
-    private String descricaoP;
-
-    public Premio(int pontosP, String nomeP,String descricaoP) {
-        this.pontosP = pontosP;
-        this.nomeP = nomeP;
-    }
-
-    public int getPontosP() {
-        return pontosP;
-    }
-
-    public void setPontosP(int pontosP) {
-        this.pontosP = pontosP;
-    }
-
-    public String getNomeP() {
-        return nomeP;
-    }
-
-    public void setNomeP(String nomeP) {
-        this.nomeP = nomeP;
-    }
-
-    public String getDescricaoP() {
-        return descricaoP;
-    }
-
-    public void setDescricaoP(String descricaoP) {
-        this.descricaoP = descricaoP;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long PremioId;
+    @Column(name = "nome" , nullable = false)
+    private String NomePremio;
+    @Column(name = "descricao" , nullable = false)
+    private String Descricao;
+    @Column(name = "pontos" , nullable = false)
+    private int Pontos_pr;
 }
