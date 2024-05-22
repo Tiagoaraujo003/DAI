@@ -1,0 +1,56 @@
+CREATE TABLE Cliente_da_TUBeneficios (
+    ClienteID INT PRIMARY KEY AUTO_INCREMENT,
+    NomeCliente VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Password VARCHAR(100) NOT NULL,
+    Genero VARCHAR(10),
+    DataNascimento DATE,
+    Pontos INT,
+    CodigoCliente VARCHAR(20)
+);
+
+-- Criação da tabela de prêmios
+CREATE TABLE Premios (
+    PremioID INT PRIMARY KEY AUTO_INCREMENT,
+    NomePremio VARCHAR(100) NOT NULL,
+    Pontos_pr INT NOT NULL
+);
+ -- Criaçao da tabela de viagens
+CREATE TABLE Viagens (
+    ViagemID INT PRIMARY KEY AUTO_INCREMENT,
+    CodigoCliente INT,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente_da_TUBeneficios(ClienteID)
+);
+
+-- Tabela para códigos de desconto gerados
+CREATE TABLE CodigosDesconto (
+    CodigoCliente INT PRIMARY KEY AUTO_INCREMENT,
+    ClienteID INT,
+    DescontoID INT,
+    DescontoUtilizado BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente_da_TUBeneficios(ClienteID),
+    FOREIGN KEY (DescontoID) REFERENCES Descontos(DescontoID)
+);
+-- Criação tabela dos feedbacks
+CREATE TABLE Feedbacks (
+    FeedbackID INT PRIMARY KEY AUTO_INCREMENT,
+    CodigoCliente INT,
+    FeedbackText TEXT NOT NULL,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente_da_TUBeneficios(ClienteID)
+);
+CREATE TABLE Pontuacao (
+    CodigoCliente INT PRIMARY KEY,
+    PontosGanhos INT NOT NULL DEFAULT 0,
+    PontosPerdidos INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente_da_TUBeneficios(ClienteID)
+);
+
+
+CREATE TABLE Administrador_daTUBeneficios (
+   AdminID INT PRIMARY KEY AUTO_INCREMENT,
+    ClienteID INT,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente_da_TUBeneficios(ClienteID)
+);
+INSERT INTO Administrador_daTUBeneficios (ClienteID) VALUES (X);
+REVOKE DELETE, UPDATE, SELECT ON sua_base_de_dados.users FROM PUBLIC;
+GRANT DELETE, UPDATE, SELECT ON sua_base_de_dados.users TO Administrador_daTUBeeficios;
